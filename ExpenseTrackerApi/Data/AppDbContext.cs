@@ -12,5 +12,13 @@ namespace ExpenseTrackerApi.Data
         }
 
         public DbSet<Expense> Expenses { get; set; }
+
+        // This method configures the Amount decimal type
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Expense>()
+                .Property(e => e.Amount)
+                .HasColumnType("decimal(18,2)");
+        }
     }
 }
